@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center align-items-center w-100" style="height: 100vh;">
+    <div class="w-50 border  shadow-lg rounded" style="height: 500px;">
+        <h2 class="text-center mt-4">USER ADD</h2>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+            <form class="w-50" (ngSubmit)="isEdit ? updateDetails() :  addUserDetails()">
+                <label class="form-label" for="text">Name</label>
+                <input type="text" placeholder="Enter your Name" [(ngModel)]="user.name" name="name" class="form-control mb-4">
+
+                <label for="email" class="form-label">Email address</label>
+                <input id="email" type="email" placeholder="Enter your Email"[(ngModel)]="user.email" name="email" class="form-control mb-4">
+
+                <label for="text" class="form-label">place</label>
+                <input type="text"  id="password" class="form-control mb-4" [(ngModel)]="user.place" name="place" placeholder="Enter your place">
+
+                <button class="btn btn-primary w-50 border border-dark  " style="margin-left: 30%;">{{isEdit ? 'Update' : 'Add'}}</button>
+               <div style="margin-left: 45%; margin-top: 2%;">
+                <button *ngIf="isEdit" (click)="cancelDeatils()" class="btn btn-primary btn border border-dark">Cancel</button></div>
+
+            </form>
+        </div> 
+    </div>
+</div>
+
+<table  class="table table-bordered border-primary" >
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>PLACE</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let i of users">
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.place}}</td>
+            <td>
+                <button (click)="userDelete(i.id)" class="btn btn border border-dark me-1"><i class="fa-solid fa-trash fa-xl"></i></button>
+                <button (click)="editUser(i)" class="btn btn border border-dark"><i class="fa-regular fa-pen-to-square fa-xl"></i></button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
